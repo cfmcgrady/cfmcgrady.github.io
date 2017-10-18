@@ -229,6 +229,192 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://http://cfmcgrady.github.io/2017/10/18/linux-grep/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fu Chen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈福的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/18/linux-grep/" itemprop="url">linux grep</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-18T17:19:28+00:00">
+                2017-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>grep的常规用法</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-A <code>num</code>,–after-context=<code>num</code></td>
+<td>显示匹配行的后面<code>num</code>行</td>
+</tr>
+<tr>
+<td>-B <code>num</code>,–before-context=<code>num</code></td>
+<td>显示匹配行的前面<code>num</code>行</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>忽略大小写匹配</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>整个单词匹配</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>显示匹配行行号，行号从1开始，如果带有-c -L -l -q参数，该参数将被忽略</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>输出匹配行行数</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>显示不匹配字符串文本的所有行</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>只输出匹配部分</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>匹配包含特定字符串的行</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@fchen:/# grep root /etc/passwd</div><div class="line">root:x:0:0:root:/root:/bin/bash</div></pre></td></tr></table></figure>
+<ul>
+<li>查找不包含特定字符串的行</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">root@fchen:/# cat data.csv # 查看data.csv数据</div><div class="line">abc</div><div class="line">bcd</div><div class="line">aaa</div><div class="line">root@fchen:/# grep -v aaa data.csv</div><div class="line">abc</div><div class="line">bcd</div></pre></td></tr></table></figure>
+<ul>
+<li>匹配所有以t/T开头的行</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">root@fchen:/# cat /tmp/regular_express.txt</div><div class="line">&quot;Open Source&quot; is a good mechanism to develop programs.</div><div class="line">apple is my favorite food.</div><div class="line">Football game is not use feet only.</div><div class="line">this dress doesn&apos;t fit me.</div><div class="line">However, this dress is about $ 3183 dollars.</div><div class="line">GNU is free air not free beer.</div><div class="line">Her hair is very beauty.</div><div class="line">I can&apos;t finish the test.</div><div class="line">Oh! The soup taste good.</div><div class="line">motorcycle is cheap than car.</div><div class="line">This window is clear.</div><div class="line">the symbol &apos;*&apos; is represented as start.</div><div class="line">Oh!     My god!</div><div class="line">The gd software is a library for drafting programs.</div><div class="line">You are the best is mean you are the no. 1.</div><div class="line">The world &lt;Happy&gt; is the same with &quot;glad&quot;.</div><div class="line">I like dog.</div><div class="line">google is the best tools for search keyword.</div><div class="line">goooooogle yes!</div><div class="line">go! go! Let&apos;s go.</div><div class="line"># I am VBird</div><div class="line">root@fchen:/#</div><div class="line">root@fchen:/#</div><div class="line">root@fchen:/# grep -i  &quot;^t&quot; /tmp/regular_express.txt</div><div class="line">this dress doesn&apos;t fit me.</div><div class="line">This window is clear.</div><div class="line">the symbol &apos;*&apos; is represented as start.</div><div class="line">The gd software is a library for drafting programs.</div><div class="line">The world &lt;Happy&gt; is the same with &quot;glad&quot;.</div></pre></td></tr></table></figure>
+<ul>
+<li>匹配不包含is和are的行</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">root@fchen:/# grep -v -e &quot;is&quot; -e &quot;are&quot; /tmp/regular_express.txt</div><div class="line">Oh! The soup taste good.</div><div class="line">Oh!     My god!</div><div class="line">I like dog.</div><div class="line">goooooogle yes!</div><div class="line">go! go! Let&apos;s go.</div><div class="line"># I am VBird</div></pre></td></tr></table></figure>
+<ul>
+<li>输出包含<code>is</code>单词的行数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@fchen:/# grep -c -w is /tmp/regular_express.txt</div><div class="line">13</div></pre></td></tr></table></figure>
+<ul>
+<li>与<code>tail</code>配合使用</li>
+</ul>
+<p><img src="./images/1_2.gif" alt="enter description here" title="1"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://http://cfmcgrady.github.io/2017/10/18/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -390,7 +576,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
