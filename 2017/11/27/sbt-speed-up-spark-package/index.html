@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="grep,linux," />
+  <meta name="keywords" content="bigdata,spark,sbt," />
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="grep的常规用法    参数 含义     -A num,–after-context=num 显示匹配行的后面num行   -B num,–before-context=num 显示匹配行的前面num行   -i 忽略大小写匹配   -w 整个单词匹配   -n 显示匹配行行号，行号从1开始，如果带有-c -L -l -q参数，该参数将被忽略   -c 输出匹配行行数   -v 显示不匹配字符">
-<meta name="keywords" content="grep,linux">
+<meta name="description" content="添加maven仓库1234567// Override SBT&apos;s default resolvers:resolvers := Seq(  Resolver.mavenLocal,  &quot;aliyun&quot; at &quot;http://maven.aliyun.com/nexus/content/groups/public/&quot;,  // DefaultMavenRepository,  Resolver.f">
+<meta name="keywords" content="bigdata,spark,sbt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux grep">
-<meta property="og:url" content="http://http://cfmcgrady.github.io/2017/10/18/linux-grep/index.html">
+<meta property="og:title" content="sbt speed up spark package">
+<meta property="og:url" content="http://http://cfmcgrady.github.io/2017/11/27/sbt-speed-up-spark-package/index.html">
 <meta property="og:site_name" content="陈福的博客">
-<meta property="og:description" content="grep的常规用法    参数 含义     -A num,–after-context=num 显示匹配行的后面num行   -B num,–before-context=num 显示匹配行的前面num行   -i 忽略大小写匹配   -w 整个单词匹配   -n 显示匹配行行号，行号从1开始，如果带有-c -L -l -q参数，该参数将被忽略   -c 输出匹配行行数   -v 显示不匹配字符">
+<meta property="og:description" content="添加maven仓库1234567// Override SBT&apos;s default resolvers:resolvers := Seq(  Resolver.mavenLocal,  &quot;aliyun&quot; at &quot;http://maven.aliyun.com/nexus/content/groups/public/&quot;,  // DefaultMavenRepository,  Resolver.f">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://cfmcgrady.github.io/2017/10/18/linux-grep/1.gif">
-<meta property="og:updated_time" content="2017-10-18T17:58:48.046Z">
+<meta property="og:updated_time" content="2017-11-27T16:58:33.252Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux grep">
-<meta name="twitter:description" content="grep的常规用法    参数 含义     -A num,–after-context=num 显示匹配行的后面num行   -B num,–before-context=num 显示匹配行的前面num行   -i 忽略大小写匹配   -w 整个单词匹配   -n 显示匹配行行号，行号从1开始，如果带有-c -L -l -q参数，该参数将被忽略   -c 输出匹配行行数   -v 显示不匹配字符">
-<meta name="twitter:image" content="http://cfmcgrady.github.io/2017/10/18/linux-grep/1.gif">
+<meta name="twitter:title" content="sbt speed up spark package">
+<meta name="twitter:description" content="添加maven仓库1234567// Override SBT&apos;s default resolvers:resolvers := Seq(  Resolver.mavenLocal,  &quot;aliyun&quot; at &quot;http://maven.aliyun.com/nexus/content/groups/public/&quot;,  // DefaultMavenRepository,  Resolver.f">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://http://cfmcgrady.github.io/2017/10/18/linux-grep/"/>
+  <link rel="canonical" href="http://http://cfmcgrady.github.io/2017/11/27/sbt-speed-up-spark-package/"/>
 
 
 
 
 
-  <title>linux grep | 陈福的博客</title>
+  <title>sbt speed up spark package | 陈福的博客</title>
   
 
 
@@ -235,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://http://cfmcgrady.github.io/2017/10/18/linux-grep/">
+    <link itemprop="mainEntityOfPage" href="http://http://cfmcgrady.github.io/2017/11/27/sbt-speed-up-spark-package/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Fu Chen">
@@ -252,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">linux grep</h1>
+          <h1 class="post-title" itemprop="name headline">sbt speed up spark package</h1>
         
 
         <div class="post-meta">
@@ -264,8 +262,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-18T17:19:28+00:00">
-                2017-10-18
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-27T16:52:57+00:00">
+                2017-11-27
               </time>
             
 
@@ -302,73 +300,19 @@
       
 
       
-        <p>grep的常规用法</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-A <code>num</code>,–after-context=<code>num</code></td>
-<td>显示匹配行的后面<code>num</code>行</td>
-</tr>
-<tr>
-<td>-B <code>num</code>,–before-context=<code>num</code></td>
-<td>显示匹配行的前面<code>num</code>行</td>
-</tr>
-<tr>
-<td>-i</td>
-<td>忽略大小写匹配</td>
-</tr>
-<tr>
-<td>-w</td>
-<td>整个单词匹配</td>
-</tr>
-<tr>
-<td>-n</td>
-<td>显示匹配行行号，行号从1开始，如果带有-c -L -l -q参数，该参数将被忽略</td>
-</tr>
-<tr>
-<td>-c</td>
-<td>输出匹配行行数</td>
-</tr>
-<tr>
-<td>-v</td>
-<td>显示不匹配字符串文本的所有行</td>
-</tr>
-<tr>
-<td>-o</td>
-<td>只输出匹配部分</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>匹配包含特定字符串的行</li>
+        <h3 id="添加maven仓库"><a href="#添加maven仓库" class="headerlink" title="添加maven仓库"></a>添加maven仓库</h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Override SBT's default resolvers:</span></div><div class="line">resolvers := <span class="type">Seq</span>(</div><div class="line">  <span class="type">Resolver</span>.mavenLocal,</div><div class="line">  <span class="string">"aliyun"</span> at <span class="string">"http://maven.aliyun.com/nexus/content/groups/public/"</span>,</div><div class="line">  <span class="comment">// DefaultMavenRepository,</span></div><div class="line">  <span class="type">Resolver</span>.file(<span class="string">"local"</span>, file(<span class="type">Path</span>.userHome.absolutePath + <span class="string">"/.ivy2/local"</span>))(<span class="type">Resolver</span>.ivyStylePatterns)</div><div class="line">),</div></pre></td></tr></table></figure>
+<blockquote>
+<p>1.<code>Resolver.mavenLocal</code>为本地maven仓库，默认路径<code>$HOME/.m2</code><br>2.将默认的maven仓库<code>DefaultMavenResolver</code>替换为阿里云的maven仓库，加速下载</p>
+</blockquote>
+<h3 id="添加sbt的插件coursier"><a href="#添加sbt的插件coursier" class="headerlink" title="添加sbt的插件coursier"></a>添加sbt的插件<code>coursier</code></h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">addSbtPlugin(<span class="string">"io.get-coursier"</span> % <span class="string">"sbt-coursier"</span> % <span class="string">"1.0.0-RC13"</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>coursier</code>是加速sbt依赖下载的插件，<a href="https://github.com/coursier/coursier" target="_blank" rel="external">GitHub地址</a></p>
+</blockquote>
+<h3 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">build/sbt clean package</div></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/25279570" target="_blank" rel="external">使用阿里云的Maven仓库加速Spark编译过程
+</a></li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@fchen:/# grep root /etc/passwd</div><div class="line">root:x:0:0:root:/root:/bin/bash</div></pre></td></tr></table></figure>
-<ul>
-<li>查找不包含特定字符串的行</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">root@fchen:/# cat data.csv # 查看data.csv数据</div><div class="line">abc</div><div class="line">bcd</div><div class="line">aaa</div><div class="line">root@fchen:/# grep -v aaa data.csv</div><div class="line">abc</div><div class="line">bcd</div></pre></td></tr></table></figure>
-<ul>
-<li>匹配所有以t/T开头的行</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">root@fchen:/# cat /tmp/regular_express.txt</div><div class="line">&quot;Open Source&quot; is a good mechanism to develop programs.</div><div class="line">apple is my favorite food.</div><div class="line">Football game is not use feet only.</div><div class="line">this dress doesn&apos;t fit me.</div><div class="line">However, this dress is about $ 3183 dollars.</div><div class="line">GNU is free air not free beer.</div><div class="line">Her hair is very beauty.</div><div class="line">I can&apos;t finish the test.</div><div class="line">Oh! The soup taste good.</div><div class="line">motorcycle is cheap than car.</div><div class="line">This window is clear.</div><div class="line">the symbol &apos;*&apos; is represented as start.</div><div class="line">Oh!     My god!</div><div class="line">The gd software is a library for drafting programs.</div><div class="line">You are the best is mean you are the no. 1.</div><div class="line">The world &lt;Happy&gt; is the same with &quot;glad&quot;.</div><div class="line">I like dog.</div><div class="line">google is the best tools for search keyword.</div><div class="line">goooooogle yes!</div><div class="line">go! go! Let&apos;s go.</div><div class="line"># I am VBird</div><div class="line">root@fchen:/#</div><div class="line">root@fchen:/#</div><div class="line">root@fchen:/# grep -i  &quot;^t&quot; /tmp/regular_express.txt</div><div class="line">this dress doesn&apos;t fit me.</div><div class="line">This window is clear.</div><div class="line">the symbol &apos;*&apos; is represented as start.</div><div class="line">The gd software is a library for drafting programs.</div><div class="line">The world &lt;Happy&gt; is the same with &quot;glad&quot;.</div></pre></td></tr></table></figure>
-<ul>
-<li>匹配不包含is和are的行</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">root@fchen:/# grep -v -e &quot;is&quot; -e &quot;are&quot; /tmp/regular_express.txt</div><div class="line">Oh! The soup taste good.</div><div class="line">Oh!     My god!</div><div class="line">I like dog.</div><div class="line">goooooogle yes!</div><div class="line">go! go! Let&apos;s go.</div><div class="line"># I am VBird</div></pre></td></tr></table></figure>
-<ul>
-<li>输出包含<code>is</code>单词的行数</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@fchen:/# grep -c -w is /tmp/regular_express.txt</div><div class="line">13</div></pre></td></tr></table></figure>
-<ul>
-<li>与<code>tail</code>配合使用</li>
-</ul>
-<p><img src="//cfmcgrady.github.io/2017/10/18/linux-grep/1.gif" alt="grep with tail"></p>
 
       
     </div>
@@ -386,7 +330,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/grep-linux/" rel="tag"># grep,linux</a>
+            <a href="/tags/bigdata-spark-sbt/" rel="tag"># bigdata,spark,sbt</a>
           
         </div>
       
@@ -399,8 +343,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/18/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2017/10/18/linux-grep/" rel="next" title="linux grep">
+                <i class="fa fa-chevron-left"></i> linux grep
               </a>
             
           </div>
@@ -408,10 +352,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/27/sbt-speed-up-spark-package/" rel="prev" title="sbt speed up spark package">
-                sbt speed up spark package <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -463,8 +403,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -517,6 +466,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加maven仓库"><span class="nav-number">1.</span> <span class="nav-text">添加maven仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加sbt的插件coursier"><span class="nav-number">2.</span> <span class="nav-text">添加sbt的插件coursier</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包"><span class="nav-number">3.</span> <span class="nav-text">打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
